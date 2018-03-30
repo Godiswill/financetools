@@ -1,0 +1,103 @@
+<view class="page">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">参保城市</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker bindchange="bindCityChange" value="{{cityIndex}}" range="{{cities}}">
+          <view class="weui-select weui-select_in-select-after weui-cell__ft">{{cities[cityIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">参保类型</view>
+      <view class="weui-cell__ft">{{types[cityIndex]}}</view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">社保基数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="digit" value="{{shebao}}" bindblur="changeShebao" />
+      </view>
+      <view class="weui-cell__bd warn-tail">区间：{{datas[cityIndex].shebao.min}}~{{datas[cityIndex].shebao.max}}</view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">公积金基数</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="digit" value="{{gjj}}" bindblur="changeGjj" />
+      </view>
+      <view class="weui-cell__bd warn-tail">区间：{{datas[cityIndex].gjj.min}}~{{datas[cityIndex].gjj.max}}</view>
+    </view>
+  </view>
+  <view class="page__bd page__bd_spacing table">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">类型</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">个人</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">公司</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">合计</view>
+      </view>
+    </view>
+    <block wx:for="{{datas[cityIndex].detail}}" wx:key="{{item.name}}">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="placeholder">{{item.name}}</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">{{item.person===''? '': item.person + ' / '}}{{item.personTip}}</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">{{item.company===''? '': item.company + ' / '}}{{item.companyTip}}</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">{{item.total}}</view>
+        </view>
+      </view>
+    </block>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">合计</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">{{personTotal}}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">{{companyTotal}}</view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="placeholder">{{total}}</view>
+      </view>
+    </view>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="placeholder">结果仅供参考，不保障绝对准确。</view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="calculate">计算</button>
+  </view>
+
+  <view class="page__hd baseline-explanation">
+    <view class="page__title">社保公积金解释</view>
+    <view class="page__desc">
+      社保真正隐含的承诺是：只要你入我圈子，给你最底的生活保障，最底的生活费。 注意：社会基本养老保险是一门保险而不是理财。保险的作用是对抗风险，例如今天猪肉 15 一斤今天给你发 1500 块能给你购买 100 斤猪肉， 哪怕不久猪肉涨到 15000 一斤，政府就给你发 1500000 元，你依然能够买 100 斤猪肉吃，这样的投资回报率秒杀一切商业保险。
+    </view>
+    <view class="page__desc">
+      公积金最好的用法，就是不要过度关注。
+    </view>
+    <view class="page__desc">
+      社保、公积金（五险一金）应该按照职工的实际收入缴纳，职工工资低于当地平均工资的 60% ，按照平均工资的 60% 缴纳， 高于当地平均工资的 300% ，按照平均工资的 300% 缴纳，在两者之间的按照实际工资缴纳。很多企业为了减少支出，一般会按当地最低或压低基数缴纳。 个人缴纳（满足“社保连续”或者当地缴纳社保的各种福利政策），一般直接按照最低基数缴纳。
+    </view>
+  </view>
+</view>

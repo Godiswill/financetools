@@ -1,0 +1,23 @@
+.table {
+  /* background: #EBEBEB; */
+  font-size: 14px;
+  padding: 0 10px;
+  text-align: center;
+  /* color: #6e6e6e; */
+}
+.table .weui-flex {
+  padding: 5px 0;
+}
+.table .weui-flex + .weui-flex {
+  border-top: 1px dashed #cfcfcf;
+}
+.table .weui-flex:last-child {
+  padding-top: 10px;
+  font-size: 12px;
+  color: #353535;
+}
+
+.table .weui-flex__item + .weui-flex__item {
+  border-left: 1px dashed #cfcfcf;
+  flex-grow: 2;
+}

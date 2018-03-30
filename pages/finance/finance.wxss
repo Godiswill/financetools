@@ -1,0 +1,5 @@
+/* pages/finance/finance.wxss */
+.page__bd,
+.weui-grid__label {
+  color: #1AAD19;
+}

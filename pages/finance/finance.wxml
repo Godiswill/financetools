@@ -1,0 +1,17 @@
+<view class="page">
+    <!-- <view class="page__hd">
+        <view class="page__title">金融</view>
+        <view class="page__desc">常用公式</view>
+    </view> -->
+    <view class="page__bd">
+        <view class="weui-grids">
+            <block wx:for="{{grids}}" wx:key="item.key">
+                <navigator url="func/func?id={{item.key}}" class="weui-grid" hover-class="weui-grid_active">
+                    <!-- <image class="weui-grid__icon" src="../../image/weui/icon_tabbar.png" /> -->
+                    <view class="weui-grid__label">{{item.abbr}}</view>
+                    <view class="weui-grid__label" style="font-size: 12px;">{{item.name}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+</view>

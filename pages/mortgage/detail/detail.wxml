@@ -1,0 +1,215 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+              <view class="weui-form-preview__label">贷款总额</view>
+              <view class="weui-form-preview__value_in-hd">¥{{loanTotal}}</view>
+            </view>
+            <view class="weui-form-preview__bd">
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">还款总额</view>
+                <view class="weui-form-preview__value">{{totalRepayAi}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">总利息</view>
+                <view class="weui-form-preview__value">{{totalInterestAi}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">月供</view>
+                <view class="weui-form-preview__value">{{repayPerMouAi}}</view>
+              </view>
+            </view>
+            <view class="weui-form-preview__ft">
+              <view class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="showDetail" hover-class="weui-form-preview__btn_active">{{hiddenDetail? "明细": "收起"}}</view>
+            </view>
+          </view>
+          <view class="page__bd page__bd_spacing table" hidden="{{hiddenDetail}}">
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">期数</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">月供</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">本金</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">利息</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">待还本金</view>
+              </view>
+            </view>
+            <block wx:for="{{repayPerMouObjAi.balanceArrAi}}" wx:key="*this">
+              <view class="weui-flex">
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{index+1}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouAi}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAi.repayPrincipalPerMouArrAi[index]}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAi.repayInterestPerMouArrAi[index]}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAi.balanceArrAi[index]}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">结果仅供参考，不保障绝对准确。</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+              <view class="weui-form-preview__label">贷款总额</view>
+              <view class="weui-form-preview__value_in-hd">¥{{loanTotal}}</view>
+            </view>
+            <view class="weui-form-preview__bd">
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">还款总额</view>
+                <view class="weui-form-preview__value">{{totalRepayPriceAp}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">总利息</view>
+                <view class="weui-form-preview__value">{{totalInterestAp}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">月供</view>
+                <view class="weui-form-preview__value">首期还 {{repayPerMouthAp}} 元，之后每月递减 {{decreasePerMouAp}} 元</view>
+              </view>
+            </view>
+            <view class="weui-form-preview__ft">
+              <view class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="showDetail" hover-class="weui-form-preview__btn_active">{{hiddenDetail? "明细": "收起"}}</view>
+            </view>
+          </view>
+          <view class="page__bd page__bd_spacing table" hidden="{{hiddenDetail}}">
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">期数</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">月供</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">本金</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">利息</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">待还本金</view>
+              </view>
+            </view>
+            <block wx:for="{{repayPerMouObjAp.balanceArrAp}}" wx:key="*this">
+              <view class="weui-flex">
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{index+1}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAp.repayPerMouPriceArrAp[index]}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPrincipalPerMouAp}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAp.repayInterestPerMouArrAp[index]}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAp.balanceArrAp[index]}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">结果仅供参考，不保障绝对准确。</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+          <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+              <view class="weui-form-preview__label">贷款总额</view>
+              <view class="weui-form-preview__value_in-hd">¥{{loanTotal}}</view>
+            </view>
+            <view class="weui-form-preview__bd">
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">还款总额</view>
+                <view class="weui-form-preview__value">{{totalRepayAi+" / "+totalRepayPriceAp}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">总利息</view>
+                <view class="weui-form-preview__value">{{totalInterestAi+" / "+totalInterestAp}}</view>
+              </view>
+              <view class="weui-form-preview__item">
+                <view class="weui-form-preview__label">月供</view>
+                <view class="weui-form-preview__value">{{repayPerMouAi}} / 首期还 {{repayPerMouthAp}} 元，之后每期递减 {{decreasePerMouAp}} 元</view>
+              </view>
+            </view>
+            <view class="weui-form-preview__ft">
+              <view class="weui-form-preview__btn weui-form-preview__btn_primary" bindtap="showDetail" hover-class="weui-form-preview__btn_active">{{hiddenDetail? "明细": "收起"}}</view>
+            </view>
+          </view>
+          <view class="page__bd page__bd_spacing table" hidden="{{hiddenDetail}}">
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">期数</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">已还本息</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">待还本金</view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">提前还款实付</view>
+              </view>
+            </view>
+            <block wx:for="{{repayPerMouObjAp.balanceArrAp}}" wx:key="*this">
+              <view class="weui-flex">
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{index+1}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAi.totalRepaidArrAi[index] + " / " + repayPerMouObjAp.totalRepaidArrAp[index]}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAi.balanceArrAi[index] + " / " + repayPerMouObjAp.balanceArrAp[index]}}</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="placeholder">{{repayPerMouObjAi.totalRepayPerMouArrAi[index] + " / " + repayPerMouObjAp.totalRepayPerMouArrAp[index]}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="weui-flex">
+              <view class="weui-flex__item">
+                <view class="placeholder">结果仅供参考，不保障绝对准确。</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 3}}">选项三的内容</view>
+      </view>
+    </view>
+  </view>
+</view>

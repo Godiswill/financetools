@@ -1,0 +1,972 @@
+<view class="page">
+  <block wx-if="{{id==0}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">本金</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入本金" data-key="principal_0" value="{{datas[0].principal}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_0" value="{{datas[0].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="totalNumberOfPayments_0" value="{{datas[0].totalNumberOfPayments}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">每期应还</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="AM">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Amortization</view>
+      <view class="page__desc">
+        AM（本金 20000, 利率 7.5%, 期数 60）=> 400.76
+      </view>
+      <view class="page__desc">
+        分期偿还——借了钱后，在固定的利息利率下分若干期，每期偿还一笔固定款项。例如借钱 20000 元，年利率 7.5%，分 60 个月还清，则每月固定还款为 400.76 元。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==1}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">现值</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入初始值" data-key="beginningValue_1" value="{{datas[1].beginningValue}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">终值</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入未来值" data-key="endingValue_1" value="{{datas[1].endingValue}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="numberOfPeriods_1" value="{{datas[1].numberOfPeriods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">复合年均增长率</view>
+        <view class="weui-cell__ft">{{result}}%</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="CAGR">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Compound Annual Growth Rate</view>
+      <view class="page__desc">
+        CAGR（现值 10000, 终值 19500, 期数 3）=> 24.93%
+      </view>
+      <view class="page__desc">
+        复合年均增长率——一项投资在特定时期内的年度增长率。例如我现在有 10000 元可用于投资，预计 3 年后，投资回报 19500 元，则复合年均增长率为 24.93%。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==2}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">本金</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入本金" data-key="principal_2" value="{{datas[2].principal}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">复合周期利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入复合周期利率" data-key="rate_2" value="{{datas[2].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">复合单元数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="compoundingsPerPeriod_2" value="{{datas[2].compoundingsPerPeriod}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">单元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">复合周期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="numberOfPeriods_2" value="{{datas[2].numberOfPeriods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">最终本息</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="CI">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Compound Interest</view>
+      <view class="page__desc">
+        CI（本金 1500, 复合周期利率 4.3%, 复合周期单元 4, 复合周期数 6）=> 1938.84
+      </view>
+      <view class="page__desc">
+        复利——指一笔资金除本金产生利息外，在下一个计息周期内，以前各计息周期内产生的利息也计算利息的计息方法。例如一项投资本金 1500 元，复合周期利率 4.3%，复合周期单元 4，则最小单元利率为 4.3%/4=1.075%，复合周期数为 6，则总的最小单元为 24，即 本金为 1500 元，每期利率 1.075%，共 24 期，在复利的计算方式下，最终总的回报为 1938.84 元。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==3}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_3" value="{{datas[3].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">周期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="numberOfPeriods_3" value="{{datas[3].numberOfPeriods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">贴现因子</view>
+        <view class="weui-cell__ft">{{result}}</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="DF">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Discount Factor</view>
+      <view class="page__desc">
+        DF（利率 10%, 期数 5）=> [1, 0.91, 0.827, 0.752, 0.684]
+      </view>
+      <view class="page__desc">
+        贴现因子——所谓贴现因子，就是将来的现金流量折算成现值的介于0－1之间的一个数。贴现因子在数值上可以理解为贴现率，就是1个份额经过一段时间后所等同的现在份额。例如每年的通货膨胀率为 10%，以当前年为第一年，当前钱的 1 元钱相当于第一年的 1 元，第二年的 1 元相当于第一年的 0.91 元，第三年的 1 元相对于第一年的 0.827 元，第四年的 1 元钱相当于第一年的 0.752 元，第五年的 1 元钱相当于第一年的 0.684 元。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==4}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">现值</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入现值" data-key="cashFlow_4" value="{{datas[4].cashFlow}}" bindinput="keyChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_4" value="{{datas[4].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入期数" data-key="numberOfPeriods_4" value="{{datas[4].numberOfPeriods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">终值</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="FV">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Future value</view>
+      <view class="page__desc">
+        FV（本金 10000, 利率 12%, 期数 10）=> 31058.48
+      </view>
+      <view class="page__desc">
+        终值——指现在某一时点上的一定量现金折合到未来的价值，俗称本利和（复利计算方式下）。例如每年的通货膨胀率为 12%，当前的 10000 元，相当于 10 年后的金额为 31058.48 元。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==5}}">
+    <!-- <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">初期投资</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入初期投资" data-key="initialInvestment_5" value="{{datas[5].initialInvestment}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view> -->
+
+    <view class="weui-cells__title weui-label">现金流</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请输入现金流" data-key="cashFlows_5" value="{{datas[5].cashFlows}}" bindconfirm="dataChange" auto-height="{{true}}" style="height: 3.3em" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">内部回报率</view>
+        <view class="weui-cell__ft">{{result}}%</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="IRR">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Internal Rate of Return</view>
+      <view class="page__desc">
+        IRR（现金流... -500000, 200000, 300000, 200000）=> 18.82%（提示：现金流支出为负，收入为正，为确保数据准确，输入时以英文逗号“,”分隔，确认输入后点击键盘右上角“完成”）
+      </view>
+      <view class="page__desc">
+        内部回报率——又称内部收益率，一种的贴现率，使得一项投资的所有现金流的净现值等于零。举个某保险的例子：
+      </view>
+      <view class="page__desc">0、宝宝零岁起，年投入 26100 元，投 10 年（0-9岁）。</view>
+      <view class="page__desc">1、大学4年（19-22岁），每年领 3 万教育金。</view>
+      <view class="page__desc">2、到28岁，领取 15 万婚嫁金。</view>
+      <view class="page__desc">3、到40岁，领取 20 万创业金。</view>
+      <view class="page__desc">4、到40岁，领取 80 万养老金。</view>
+      <view class="page__desc">5、到80岁，领取 200 万祝寿金。</view>
+      <view class="page__desc">6、到81岁，原先投入的 26.1 万元全额归还。</view>
+      <view class="page__desc">不考虑该产品的保险属性，其理财属性的回报率大概为 4.88%。</view>
+
+      <view class="page__bd page__bd_spacing table">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="placeholder">年数</view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder">收入</view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder">支出</view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder">总计</view>
+          </view>
+        </view>
+        <block wx:for="{{IRRArr}}">
+          <view class="weui-flex">
+            <view class="weui-flex__item">
+              <view class="placeholder">{{index}}</view>
+            </view>
+            <view class="weui-flex__item">
+              <view class="placeholder">{{item[0]}}</view>
+            </view>
+            <view class="weui-flex__item">
+              <view class="placeholder">{{item[1]}}</view>
+            </view>
+            <view class="weui-flex__item">
+              <view class="placeholder">{{item[2]}}</view>
+            </view>
+          </view>
+        </block>
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="placeholder">IRR</view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder"></view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder"></view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="placeholder">{{irr}}%</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </block>
+  <block wx-if="{{id==6}}">
+    <!-- <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">本金</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入本金" name="key" value="{{key}}" bindinput="keyChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" name="data" value="{{data}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入期数" name="data" value="{{data}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">每期应还</view>
+        <view class="weui-cell__ft">222</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="setStorage">计算</button>
+    </view> -->
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">XIRR</view>
+      <!-- <view class="page__desc">
+        AM(本金, 利率, 期数);
+      </view> -->
+      <view class="page__desc">
+        XIRR反映一组现金流的内部收益率，这些现金流不一定定期发生。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==7}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">liabilities</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入liabilities" data-key="liabilities_7" value="{{datas[7].liabilities}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">debts</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入debts" data-key="debts_7" value="{{datas[7].debts}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">income</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入income" data-key="income_7" value="{{datas[7].income}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">杠杆比率</view>
+        <view class="weui-cell__ft">{{result}}%</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="LR">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Leverage Ratio</view>
+      <view class="page__desc">
+        LR（liabilities 25, debts 10, income 20）=> 1.75
+      </view>
+      <view class="page__desc">
+        杠杆比率——偿还财务能力比率，量度公司或个人举债与平常运作收入，以反映公司或个人履行债务能力。例如应付票据、应付账款、应付债券、应付工资等总负债为 25，短、长期借款为 10，总收入为 20，则杠杆比率为 175%。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==8}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">贴现率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入贴现率" data-key="rate_8" value="{{datas[8].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">初期投资</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入初期投资" data-key="initialInvestment_8" value="{{datas[8].initialInvestment}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title weui-label">现金流</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请输入现金流" data-key="cashFlows_8" value="{{datas[8].cashFlows}}" bindconfirm="dataChange" auto-height="{{true}}" style="height: 3.3em" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">净现值</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="NPV">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Net Present Value</view>
+      <view class="page__desc">
+        NPV（贴现率 10, 初期投资 500000, 现金流... 200000, 300000, 200000）=> 80015.03（提示：现金流支出为负，收入为正，为确保数据准确，输入时以英文逗号“,”分隔，确认输入后点击键盘右上角“完成”）
+      </view>
+      <view class="page__desc">
+        净现值——指投资方案所产生的现金净流量以资金成本为贴现率折现之后与原始投资额现值的差额。净现值法就是按净现值大小来评价方案优劣的一种方法。净现值大于零则方案可行，且净现值越大，方案越优，投资效益越好。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==9}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="numberOfPeriods_9" value="{{datas[9].numberOfPeriods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title weui-label">现金流</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请输入现金流" data-key="cashFlows_9" value="{{datas[9].cashFlows}}" bindconfirm="dataChange" auto-height="{{true}}" style="height: 3.3em" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">投资回收期</view>
+        <view class="weui-cell__ft">{{result}}年</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="PP">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Payback Period</view>
+      <view class="page__desc">
+        1、PP（期数 0, 现金流 -105, 25）=> 4.2
+      </view>
+      <view class="page__desc">
+        2、PP（期数 5, 现金流 -50, 10, 13, 16, 19, 22）=> 3.42（提示：现金流支出为负，收入为正，为确保数据准确，输入时以英文逗号“,”分隔，确认输入后点击键盘右上角“完成”）
+      </view>
+      <view class="page__desc">
+        投资回收期——指从项目的投建之日起，用项目所得的净收益偿还原始投资所需要的年限。例如年初初期投资为 105 元，期数为 0 表示往后每年年末固定收入 25 元，此时投资回收期为 4.2年；年初初期投资为 50 元，往后每年年末分别收入 10、13、16、19、22 元，此时投资回收期为 3.42 年。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==10}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_10" value="{{datas[10].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">终值</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入终值" data-key="cashFlow_10" value="{{datas[10].cashFlow}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="numberOfPeriods_10" value="{{datas[10].numberOfPeriods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">现值</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="PV">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Present Value</view>
+      <view class="page__desc">
+        PV（利率 12%, 终值 10000, 期数 5）=> 5674.27
+      </view>
+      <view class="page__desc">
+        现值——也称折现值、贴现值、资本化价值（Capitalized Value），是过去或将来的一笔现金或现金流在今天的价值。会计计量中的现值，是指对未来现金流量以恰当的折现率折现后的价值，是考虑货币时间价值因素等的一种计量属性。例如每年通货膨胀率为 12%，未来 5 年的 10000 元，相当于现在的 5674.27 元。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==11}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_11" value="{{datas[11].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">初期投资</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入初期投资" data-key="initialInvestment_11" value="{{datas[11].initialInvestment}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title weui-label">现金流</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请输入现金流" data-key="cashFlows_11" value="{{datas[11].cashFlows}}" bindconfirm="dataChange" auto-height="{{true}}" style="height: 3.3em" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">现值指数</view>
+        <view class="weui-cell__ft">{{result}}</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="PI">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Profitability Index</view>
+      <view class="page__desc">
+        PI（利率 10, 初期投资 40000, 现金流... 18000, 12000, 10000, 9000, 6000）=> 1.09（提示：现金流支出为负，收入为正，为确保数据准确，输入时以英文逗号“,”分隔，确认输入后点击键盘右上角“完成”）
+      </view>
+      <view class="page__desc">
+        现值指数——又称获利指数或利润指数，是指投资项目未来现金净流量的总现值与原始投资现值之比。如果投资项目的现值指数大于或等于1，表明该投资项目的投资报酬率高于或等于预定的贴现率，该项目可以接受；如果投资方案的小于1，表明该投资项目的投资报酬率低于预定的贴现率，该项目则不可以接受。在多个备选项目的互斥选择中，应接受现值指数大于1最多的投资项目。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==12}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">投资</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入投资" data-key="initialInvestment_12" value="{{datas[12].initialInvestment}}" bindinput="keyChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">收益</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入收益" data-key="earnings_12" value="{{datas[12].earnings}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">投资回报率</view>
+        <view class="weui-cell__ft">{{result}}%</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="ROI">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Return On Investment</view>
+      <view class="page__desc">
+        ROI（投资 -55000, 收益 60000）=> 9.09
+      </view>
+      <view class="page__desc">
+        投资回报率——指通过投资而应返回的价值，即 ROI = (收益-|投资|) / |投资|。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==13}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_13" value="{{datas[13].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">时间</view>
+        <view class="weui-cell__ft">{{result}}周期</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="R72">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Rule of 72</view>
+      <view class="page__desc">
+        R72（利率 10）=> 7.2
+      </view>
+      <view class="page__desc">
+        72法则——复利计算方式下，已知利率，估计投资金额翻番的时间。例如投资 100W，每年的收益率为 10%，在复利的计算方式下，100W 变 200W 所需时间为 7.2 年。同理有人告诉你一项“很好”的投资项目，30 年本金翻番，则每年年均复利利率大约为 2.4%。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==14}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">股本成本</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入股本成本" data-key="marketValueOfEquity_14" value="{{datas[14].marketValueOfEquity}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">债务成本</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入债务成本" name="marketValueOfDebt_14" value="{{datas[14].marketValueOfDebt}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">股本市值</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入期数" data-key="costOfEquity_14" value="{{datas[14].costOfEquity}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">债务市值</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入期数" data-key="costOfDebt_14" value="{{datas[14].costOfDebt}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">企业税率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入期数" data-key="taxRate_14" value="{{datas[14].taxRate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">加权平均资本成本</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="WACC">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Weighted Average Cost of Capital</view>
+      <view class="page__desc">
+        WACC（股本成本 600000, 债务成本 400000, 股本市值 6, 债务市值 5, 企业税率 35）=> 4.9
+      </view>
+      <view class="page__desc">
+        加权平均资本成本——加权平均资本成本是按各类资本所占总资本来源的权重加权平均计算公司资本成本的方法。资本来源包括普通股、优先股、债券及所有长期债务，计算时将每种资本的成本（税后）乘以其占总资本的比例，然后加总。多用于公司资本预算。
+      </view>
+      <view class="page__desc">WACC=(E/V）×Re+（D/V）×Rd×(1-Tc)</view>
+      <view class="page__desc">Re = 股本成本</view>
+      <view class="page__desc">Rd = 债务成本</view>
+      <view class="page__desc">E = 公司股本的市场价值
+      </view>
+      <view class="page__desc">D = 公司债务的市场价值</view>
+      <view class="page__desc">V = E + D</view>
+      <view class="page__desc">E/V = 股本占融资总额的百分比
+      </view>
+      <view class="page__desc">D/V = 债务占融资总额的百分比</view>
+      <view class="page__desc">Tc = 企业税率</view>
+    </view>
+  </block>
+  <block wx-if="{{id==15}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">利率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="rate_15" value="{{datas[15].rate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="numberOfPayments_15" value="{{datas[15].numberOfPayments}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">贷款额</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入贷款" data-key="principal_15" value="{{datas[15].principal}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">等额本息分期付款</view>
+        <view class="weui-cell__ft">{{result}}元</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="PMT">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Payment</view>
+      <view class="page__desc">
+        PMT（利率 2, 期数 36, 贷款额 1000000）=> 39232.85
+      </view>
+      <view class="page__desc">
+        等额本息分期付款——在固定利率下，贷款的等额分期偿还额。例如：贷款 1000000 元，月利率为 2%，分 36 个月还清，则每月还款额为 39232.85 元。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==16}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">投资回报率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入利率" data-key="investmentReturn_16" value="{{datas[16].investmentReturn}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">通货膨胀率</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入期数" data-key="inflationRate_16" value="{{datas[16].inflationRate}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">%</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">实际回报率</view>
+        <view class="weui-cell__ft">{{result}}%</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="IAR">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Inflation-adjusted Return</view>
+      <view class="page__desc">
+        IAR（投资回报率 18%, 通货膨胀率 12%）=> 5.36%
+      </view>
+      <view class="page__desc">
+        实际回报即通货膨胀调整后的回报。例如一项投资的名义回报率为 18%，通货膨胀率为 12%，则实际回报率为 1-(1+18%)/(1+12%)=5.36%。
+      </view>
+    </view>
+  </block>
+  <block wx-if="{{id==17}}">
+    <view class="weui-cells__title">输入参数</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">期数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="number" placeholder="请输入期数" data-key="periods_17" value="{{datas[17].periods}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">期</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">每期偿还</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入每期偿还" data-key="payment_17" value="{{datas[17].payment}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">贷款额</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" type="digit" placeholder="请输入贷款" data-key="present_17" value="{{datas[17].present}}" bindinput="dataChange"></input>
+        </view>
+        <view class="weui-cell__bd weui-cell__ft">元</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">计算结果</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">每期利率（x12）</view>
+        <view class="weui-cell__ft">{{result}}%（{{result*12}}%）</view>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button type="primary" bindtap="RATE">计算</button>
+    </view>
+    <view class="page__hd baseline-explanation">
+      <view class="page__title">Rate</view>
+      <view class="page__desc">
+        RATE（期数 12, 每期偿还 330, 贷款额 2700）=> 6.45%
+      </view>
+      <view class="page__desc">
+        一笔贷款，贷 2700 元，等额分期分 12 个月还款，每个月还款 330 元，则每个月的贷款利率为 6.45%，年利率 6.45% x 12。
+      </view>
+    </view>
+  </block>
+</view>
