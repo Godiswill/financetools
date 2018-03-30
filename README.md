@@ -13,4 +13,4 @@
 <div><img src="image/preview/4.png" width="333" alt="房贷计算结果"/></div>
 
 - 五险一金
-<div><img src="image/preview/4.png" width="333" alt="五险一金"/></div>
+<div><img src="image/preview/5.png" width="333" alt="五险一金"/></div>
