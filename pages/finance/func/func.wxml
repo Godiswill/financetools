@@ -215,7 +215,7 @@
           <view class="weui-label">现值</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" type="digit" placeholder="请输入现值" data-key="cashFlow_4" value="{{datas[4].cashFlow}}" bindinput="keyChange"></input>
+          <input class="weui-input" type="digit" placeholder="请输入现值" data-key="cashFlow_4" value="{{datas[4].cashFlow}}" bindinput="dataChange"></input>
         </view>
         <view class="weui-cell__bd weui-cell__ft">元</view>
       </view>
@@ -366,7 +366,7 @@
           <view class="weui-label">本金</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" type="digit" placeholder="请输入本金" name="key" value="{{key}}" bindinput="keyChange"></input>
+          <input class="weui-input" type="digit" placeholder="请输入本金" name="key" value="{{key}}" bindinput="dataChange"></input>
         </view>
         <view class="weui-cell__bd weui-cell__ft">元</view>
       </view>
@@ -672,7 +672,7 @@
           <view class="weui-label">投资</view>
         </view>
         <view class="weui-cell__bd">
-          <input class="weui-input" type="digit" placeholder="请输入投资" data-key="initialInvestment_12" value="{{datas[12].initialInvestment}}" bindinput="keyChange"></input>
+          <input class="weui-input" type="digit" placeholder="请输入投资" data-key="initialInvestment_12" value="{{datas[12].initialInvestment}}" bindinput="dataChange"></input>
         </view>
         <view class="weui-cell__bd weui-cell__ft">元</view>
       </view>
@@ -953,7 +953,7 @@
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
         <view class="weui-cell__bd">每期利率（x12）</view>
-        <view class="weui-cell__ft">{{result}}%（{{result*12}}%）</view>
+        <view class="weui-cell__ft">{{result}}%（{{result12}}%）</view>
       </view>
     </view>
     <view class="btn-area">

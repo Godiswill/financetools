@@ -213,6 +213,9 @@ Page({
       value += '.';
     }
     this.data.datas[index][key] = value;
+    if ( e.detail.value.trim().match(/^(0|[1-9]\d*)\.0+$/) ) {
+      this.data.datas[index][key] = e.detail.value.trim();
+    }
     this.setData({
       datas: this.data.datas
     });
@@ -333,7 +336,8 @@ Page({
     var params = this.data.datas[17];
     this.data.result = finance.RATE(params.periods, params.payment, params.present);
     this.setData({
-      result: this.data.result
+      result: this.data.result,
+      result12: (this.data.result*12).toFixed(2)
     })
   },
   /**
